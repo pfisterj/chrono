@@ -148,6 +148,7 @@
 			"displayName": "Windows CI Base Configuration",
 			"inherits": "genericci-base",
 			"cacheVariables": {
+				"CMAKE_VERBOSE_MAKEFILE": "ON",
 				"CMAKE_INSTALL_PREFIX": "$env{CI_PROJECT_DIR}/install",
 				"ENABLE_MODULE_PARSERS": "ON",				
 				"ENABLE_MODULE_IRRLICHT": "ON",
