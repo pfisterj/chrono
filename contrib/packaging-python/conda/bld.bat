@@ -24,10 +24,49 @@ REM For chrono::sensor, we are using the machine's CUDA and optix installation s
 REM Keep an eye on this in the future. Ideally, all packages we use to build pyChrono should come from anaconda
 
 mkdir cmake_began
-cmake -G "Visual Studio 17 2022" -T "v142" ^
- -DCMAKE_INSTALL_PREFIX="%LIBRARY_PREFIX%" ^
- -DCMAKE_PREFIX_PATH="%LIBRARY_PREFIX%" ^
- -DCMAKE_SYSTEM_PREFIX_PATH="%LIBRARY_PREFIX%" ^
+@REM cmake -G "Visual Studio 17 2022" -T "v142" ^
+@REM  -DCMAKE_INSTALL_PREFIX="%LIBRARY_PREFIX%" ^
+@REM  -DCMAKE_PREFIX_PATH="%LIBRARY_PREFIX%" ^
+@REM  -DCMAKE_SYSTEM_PREFIX_PATH="%LIBRARY_PREFIX%" ^
+@REM  -DCH_CONDA_INSTALL=ON ^
+@REM  -DCH_INSTALL_PYTHON_PACKAGE="%SP_DIR%" ^
+@REM  -DCH_PYCHRONO_DATA_PATH="../../../Library/data" ^
+@REM  -DCH_PYCHRONO_SHADER_PATH="../../../Library/lib/sensor_ptx" ^
+@REM  -DPYTHON_EXECUTABLE:FILEPATH="%PYTHON%" ^
+@REM  -DPYTHON_INCLUDE_DIR:PATH="%PREFIX%"/include ^
+@REM  -DPYTHON_LIBRARY:FILEPATH="%PREFIX%"/libs/python%MY_PY_VER%.lib ^
+@REM  -DSWIG_EXECUTABLE="%PREFIX%"/Library/bin/swig.exe ^
+@REM  -DCMAKE_BUILD_TYPE="%CONFIGURATION%" ^
+@REM  -DENABLE_MODULE_IRRLICHT=ON ^
+@REM  -DENABLE_MODULE_POSTPROCESS=ON ^
+@REM  -DENABLE_MODULE_VEHICLE=ON ^
+@REM  -DENABLE_MODULE_PYTHON=ON ^
+@REM  -DENABLE_MODULE_SENSOR=ON ^
+@REM  -DNUMPY_INCLUDE_DIR="C:/Users/builder/miniconda3/pkgs/numpy-base/Lib/site-packages/numpy/core/include/" ^
+@REM  -DOptiX_INSTALL_DIR="C:/Program Files/NVIDIA Corporation/OptiX SDK 7.5.0" ^
+@REM  -DCUDA_TOOLKIT_ROOT_DIR="C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v11.7" ^
+@REM  -DGLFW_DLL="C:/Users/builder/Documents/glfw-3.3.5/lib-vc2019/glfw3.dll" ^
+@REM  -DGLFW_INCLUDE_DIR="C:/Users/builder/Documents/glfw-3.3.5/include" ^
+@REM  -DGLFW_LIBRARY="C:/Users/builder/Documents/glfw-3.3.5/lib-vc2019/glfw3dll.lib" ^
+@REM  -DUSE_CUDA_NVRTC=OFF ^
+@REM  -DCUDA_ARCH_NAME=Manual ^
+@REM  -DCUDA_ARCH_PTX=52 ^
+@REM  -DCUDA_ARCH_BIN=5.2 ^
+@REM  -DBUILD_DEMOS=OFF ^
+@REM  -DIRRLICHT_INSTALL_DIR="%PREFIX%"/Library/include/irrlicht ^
+@REM  -DIRRLICHT_LIBRARY="%PREFIX%"/Library/lib/Irrlicht.lib ^
+@REM  -DBUILD_TESTING=OFF ^
+@REM  -DBUILD_BENCHMARKING=OFF ^
+@REM  -DENABLE_MODULE_CASCADE=ON ^
+@REM  -DCASCADE_INCLUDE_DIR="%PREFIX%"/Library/include/opencascade ^
+@REM  -DCASCADE_LIBDIR="%PREFIX%"/Library/lib ^
+@REM  -DENABLE_MODULE_PARDISO_MKL=ON ^
+@REM  -DMKL_INCLUDE_DIR="%PREFIX%"/Library/include ^
+@REM  -DMKL_RT_LIBRARY="%PREFIX%"/Library/lib/mkl_rt.lib ^
+@REM  -DIOMP5_LIBRARY="C:/Program Files (x86)/Intel/oneAPI/compiler/latest/windows/compiler/lib/intel64_win/libiomp5md.lib" ^
+@REM  ..
+
+cmake --preset=windowsci-vs2022 ^
  -DCH_CONDA_INSTALL=ON ^
  -DCH_INSTALL_PYTHON_PACKAGE="%SP_DIR%" ^
  -DCH_PYCHRONO_DATA_PATH="../../../Library/data" ^
@@ -35,36 +74,20 @@ cmake -G "Visual Studio 17 2022" -T "v142" ^
  -DPYTHON_EXECUTABLE:FILEPATH="%PYTHON%" ^
  -DPYTHON_INCLUDE_DIR:PATH="%PREFIX%"/include ^
  -DPYTHON_LIBRARY:FILEPATH="%PREFIX%"/libs/python%MY_PY_VER%.lib ^
- -DSWIG_EXECUTABLE="%PREFIX%"/Library/bin/swig.exe ^
- -DCMAKE_BUILD_TYPE="%CONFIGURATION%" ^
- -DENABLE_MODULE_IRRLICHT=ON ^
- -DENABLE_MODULE_POSTPROCESS=ON ^
- -DENABLE_MODULE_VEHICLE=ON ^
- -DENABLE_MODULE_PYTHON=ON ^
- -DENABLE_MODULE_SENSOR=ON ^
  -DNUMPY_INCLUDE_DIR="C:/Users/builder/miniconda3/pkgs/numpy-base/Lib/site-packages/numpy/core/include/" ^
- -DOptiX_INSTALL_DIR="C:/Program Files/NVIDIA Corporation/OptiX SDK 7.5.0" ^
- -DCUDA_TOOLKIT_ROOT_DIR="C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v11.7" ^
- -DGLFW_DLL="C:/Users/builder/Documents/glfw-3.3.5/lib-vc2019/glfw3.dll" ^
- -DGLFW_INCLUDE_DIR="C:/Users/builder/Documents/glfw-3.3.5/include" ^
- -DGLFW_LIBRARY="C:/Users/builder/Documents/glfw-3.3.5/lib-vc2019/glfw3dll.lib" ^
  -DUSE_CUDA_NVRTC=OFF ^
  -DCUDA_ARCH_NAME=Manual ^
  -DCUDA_ARCH_PTX=52 ^
  -DCUDA_ARCH_BIN=5.2 ^
- -DBUILD_DEMOS=OFF ^
- -DIRRLICHT_INSTALL_DIR="%PREFIX%"/Library/include/irrlicht ^
- -DIRRLICHT_LIBRARY="%PREFIX%"/Library/lib/Irrlicht.lib ^
  -DBUILD_TESTING=OFF ^
  -DBUILD_BENCHMARKING=OFF ^
- -DENABLE_MODULE_CASCADE=ON ^
  -DCASCADE_INCLUDE_DIR="%PREFIX%"/Library/include/opencascade ^
  -DCASCADE_LIBDIR="%PREFIX%"/Library/lib ^
  -DENABLE_MODULE_PARDISO_MKL=ON ^
  -DMKL_INCLUDE_DIR="%PREFIX%"/Library/include ^
  -DMKL_RT_LIBRARY="%PREFIX%"/Library/lib/mkl_rt.lib ^
- -DIOMP5_LIBRARY="C:/Program Files (x86)/Intel/oneAPI/compiler/latest/windows/compiler/lib/intel64_win/libiomp5md.lib" ^
  ..
+ 
 if errorlevel 1 exit 1
 mkdir cmake_ended
 
