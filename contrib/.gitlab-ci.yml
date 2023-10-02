@@ -161,10 +161,10 @@ linux:ubuntu22.04-clang:test:
     # this script overwrites the default ubuntu script to include conda preparations
     - uname -a
     - export DEBIAN_FRONTEND=noninteractive
-    - apt-get update; apt-get -y install wget git
-        cmake ninja-build build-essential libboost-dev swig libglfw3-dev
-        libglm-dev libglew-dev freeglut3-dev libirrlicht-dev
-        libxxf86vm-dev libhdf5-dev
+    - apt-get update; apt-get -y install unzip wget python3 python3-pip
+      git cmake ninja-build doxygen libvulkan-dev pkg-config libirrlicht-dev 
+      freeglut3-dev mpich libasio-dev libboost-dev libglfw3-dev libglm-dev 
+      libglew-dev libtinyxml2-dev swig python3-dev libhdf5-dev libnvidia-gl-530
     - ldconfig
     - wget https://bitbucket.org/blaze-lib/blaze/downloads/blaze-3.8.tar.gz
     - tar -xf blaze-3.8.tar.gz
@@ -178,6 +178,7 @@ linux:ubuntu22.04-clang:test:
     - wget "http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh"
     - bash Miniconda3-latest-Linux-x86_64.sh -b
     - export PATH=$HOME/miniconda3/bin:$PATH
+    - export NP_INCL=$(python3 $CI_PROJECT_DIR/contrib/packaging-python/conda/setvarnumpy.py)
     - conda config --set show_channel_urls true
     - conda install conda-build anaconda-client conda-verify --yes
     - conda update conda --yes

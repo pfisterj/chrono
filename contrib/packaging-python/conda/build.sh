@@ -3,7 +3,7 @@ echo Started build.sh
 mkdir ./build
 cd ./build
 echo $CI_PROJECT_DIR
-export NP_INCL=$(python3 $CI_PROJECT_DIR/contrib/packaging-python/conda/setvarnumpy.py )
+echo $NP_INCL
 
 # Python libraries are different file types for MacOS and linux
 # TODO: Check if this is needed since MacOS has its own deployment script
@@ -13,7 +13,6 @@ if [ `uname` == Darwin ]; then
 else
     PY_LIB="libpython${PY_VER}.so"
 fi
-
 
 # set MKL vars
 export MKL_INTERFACE_LAYER=LP64
