@@ -3,6 +3,7 @@ echo Started build.sh
 mkdir ./build
 cd ./build
 echo $CI_PROJECT_DIR
+export NP_INCL=$(python3 -c "import numpy; print(numpy.get_include())")
 echo $NP_INCL
 
 # Python libraries are different file types for MacOS and linux
